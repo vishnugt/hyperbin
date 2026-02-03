@@ -1,0 +1,21 @@
+[package]
+name = "hyper-status"
+version = "0.1.0"
+edition = "2021"
+description = "Minimal HTTP server returning status codes with zero-byte bodies"
+license = "MIT"
+repository = "https://github.com/placeholder/hyper-status"
+readme = "README.md"
+
+[dependencies]
+hyper = { version = "1", features = ["http1", "server"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+http-body-util = "0.1"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "macros"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
