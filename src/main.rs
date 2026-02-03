@@ -45,7 +45,7 @@ impl hyper::service::Service<Request<hyper::body::Incoming>> for StatusSvc {
 
 #[tokio::main]
 async fn main() {
-    let addr = SocketAddr::from(([0, 0, 0, 0], 3002));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 80));
     let listener = TcpListener::bind(addr).await.unwrap();
 
     loop {

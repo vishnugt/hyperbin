@@ -8,8 +8,14 @@ RUN cargo build --release
 
 FROM debian:bookworm-slim
 
-COPY --from=builder /app/target/release/hyper-status /usr/local/bin/hyper-status
+LABEL org.opencontainers.image.title="HyperBin"
+LABEL org.opencontainers.image.description="Lightweight httpbin alternative written in Rust"
+LABEL org.opencontainers.image.version="0.1.0"
+LABEL org.opencontainers.image.source="https://github.com/vishnugt/hyperbin"
+LABEL org.opencontainers.image.licenses="MIT"
 
-EXPOSE 3002
+COPY --from=builder /app/target/release/hyperbin /usr/local/bin/hyperbin
 
-CMD ["hyper-status"]
+EXPOSE 80
+
+CMD ["hyperbin"]

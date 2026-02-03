@@ -96,16 +96,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "hyper-status"
-version = "0.1.0"
-dependencies = [
- "http-body-util",
- "hyper",
- "hyper-util",
- "tokio",
-]
-
-[[package]]
 name = "hyper-util"
 version = "0.1.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -116,6 +106,16 @@ dependencies = [
  "http-body",
  "hyper",
  "pin-project-lite",
+ "tokio",
+]
+
+[[package]]
+name = "hyperbin"
+version = "0.1.0"
+dependencies = [
+ "http-body-util",
+ "hyper",
+ "hyper-util",
  "tokio",
 ]
 

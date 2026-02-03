@@ -1,10 +1,10 @@
 [package]
-name = "hyper-status"
+name = "hyperbin"
 version = "0.1.0"
 edition = "2021"
 description = "Minimal HTTP server returning status codes with zero-byte bodies"
 license = "MIT"
-repository = "https://github.com/placeholder/hyper-status"
+repository = "https://github.com/vishnugt/hyperbin"
 readme = "README.md"
 
 [dependencies]
