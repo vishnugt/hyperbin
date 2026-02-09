@@ -22,27 +22,28 @@ Any valid HTTP status code works. Invalid paths return `400 Bad Request`.
 
 ## Performance
 
-Benchmarked under identical container constraints (1 CPU, 256 MB RAM, 50 concurrent connections, 10s duration).
+Benchmarked under identical container constraints (2 CPUs, 256 MB RAM, 500 concurrent connections, 10s duration).
 
 | Metric     | hyperbin   | httpbin    | Speedup |
 |------------|------------|------------|---------|
-| total reqs | ~596,660   | ~40,090    | 14.88x  |
-| average    | 0.84 ms    | 12.48 ms   | 14.92x  |
-| fastest    | 0.08 ms    | 0.52 ms    | 6.52x   |
-| slowest    | 18.85 ms   | 48.89 ms   | 2.59x   |
-| p50        | 0.80 ms    | 12.25 ms   | 15.22x  |
-| p99        | 1.58 ms    | 17.35 ms   | 10.95x  |
+| total reqs | 681,294    | 35,352     | 19.27x  |
+| average    | 7.33 ms    | 140.54 ms  | 19.17x  |
+| fastest    | 0.66 ms    | 0.50 ms    | 0.76x   |
+| slowest    | 86.84 ms   | 807.54 ms  | 9.30x   |
+| p50        | 7.04 ms    | 125.42 ms  | 17.82x  |
+| p99        | 12.21 ms   | 577.30 ms  | 47.27x  |
+| req/sec    | 68,135     | 3,584      | 19.01x  |
 
 ## Reproduce
 
 Run both side by side and benchmark with [oha](https://github.com/hatoo/oha):
 
 ```sh
-docker run -d --name hyperbin -p 3001:80 --cpus 1 --memory 256m vishnugt/hyperbin
-docker run -d --name httpbin  -p 3002:80 --cpus 1 --memory 256m kennethreitz/httpbin
+docker run -d --name hyperbin -p 3001:80 --cpus 2 --memory 256m vishnugt/hyperbin
+docker run -d --name httpbin  -p 3002:80 --cpus 2 --memory 256m kennethreitz/httpbin
 
-oha -z 10s -c 50 http://localhost:3001/
-oha -z 10s -c 50 http://localhost:3002/status/200
+oha -z 10s -c 500 http://localhost:3001/
+oha -z 10s -c 500 http://localhost:3002/status/200
 ```
 
 ## Build
